@@ -8,6 +8,16 @@ namespace Lykke.Service.Icon.Api.Core.Repositories
 {
     public interface IBalanceRepository
     {
-        Task<(IEnumerable<AddressBalance> balances, string continuationToken)> GetTransferableBalancesAsync(int take, string continuationToken);
+        Task<bool> CreateIfNotExistsAsync(string address);
+
+        Task<bool> DeleteIfExistsAsync(string address);
+
+        Task<bool> ExistsAsync(string address);
+
+        Task<Balance> TryGetAsync(string address);
+
+        Task UpdateSafelyAsync(Balance balance);
+
+        Task<(IEnumerable<Balance> Balances, string ContinuationToken)> GetAllTransferableBalancesAsync(int take, string continuationToken);
     }
 }

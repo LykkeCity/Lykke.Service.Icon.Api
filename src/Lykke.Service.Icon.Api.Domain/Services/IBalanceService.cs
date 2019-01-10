@@ -10,6 +10,6 @@ namespace Lykke.Service.Icon.Api.Core.Services
 
         Task<bool> EndObservationIfObservingAsync(string address);
 
-        Task<(IEnumerable<AddressBalance> balances, string continuationToken)> GetTransferableBalancesAsync(int take, string continuationToken);
+        Task<(IEnumerable<Balance> balances, string continuationToken)> GetTransferableBalancesAsync(int take, string continuationToken);
     }
 }

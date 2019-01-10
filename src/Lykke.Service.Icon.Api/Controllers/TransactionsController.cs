@@ -34,9 +34,9 @@ namespace Lykke.Service.Icon.Api.Controllers
             var buildResult = await _transactionService.BuildTransactionAsync
             (
                 transactionId: request.OperationId,
-                @from: from,
+                from: from,
                 to: to,
-                amount: amount,
+                transferAmount: amount,
                 includeFee: request.IncludeFee
             );
 
