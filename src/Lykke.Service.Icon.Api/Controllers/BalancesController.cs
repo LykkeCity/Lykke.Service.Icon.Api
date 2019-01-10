@@ -70,8 +70,8 @@ namespace Lykke.Service.Icon.Api.Controllers
                 {
                     Address = x.Address,
                     AssetId = Constants.AssetId,
-                    Balance = x.Amount,
-                    Block = x.BlockNumber
+                    Balance = x.Amount.ToString(),
+                    Block = (long)x.BlockNumber
                 }).ToList()
             };
         }

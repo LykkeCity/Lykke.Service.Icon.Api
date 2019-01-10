@@ -3,18 +3,30 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Lykke.Service.Icon.Api.Core.Domain;
 
 namespace Lykke.Service.Icon.Api.Core.Services
 {
     public interface ITransactionService
     {
-        Task<BuildTransactionResult> BuildTransactionAsync(Guid transactionId, string @from, string to, BigInteger amount, bool includeFee);
+        [ItemNotNull]
+        Task<BuildTransactionResult> BuildTransactionAsync(
+            Guid transactionId,
+            [NotNull] string from,
+            [NotNull] string to,
+            BigInteger transferAmount,
+            bool includeFee);
 
-        Task<BroadcastTransactionResult> BroadcastTransactionAsync(Guid transactionId, string signedTxData);
+        [ItemNotNull]
+        Task<BroadcastTransactionResult> BroadcastTransactionAsync(
+            Guid transactionId,
+            [NotNull] string signedTxData);
 
-        Task<bool> DeleteTransactionIfExistsAsync(Guid requestTransactionId);
+        Task<bool> DeleteTransactionIfExistsAsync(
+            Guid transactionId);
 
-        Task<Transaction> TryGetTransactionAsync(Guid requestTransactionId);
+        Task<Transaction> TryGetTransactionAsync(
+            Guid transactionId);
     }
 }

@@ -10,7 +10,7 @@ namespace Lykke.Service.Icon.Api.Core.Domain
         BalanceIsNotEnough = 1,
         TransactionHasBeenBroadcasted = 2,
         TransactionHasBeenDeleted = 3,
-        TransactionShouldBeRebuilt,
-        OperationHasNotBeenFound
+        TransactionShouldBeRebuilt = 4,
+        OperationHasNotBeenFound = 5
     }
 }
