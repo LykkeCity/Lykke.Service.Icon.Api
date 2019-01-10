@@ -1,10 +1,9 @@
 ﻿using JetBrains.Annotations;
 using Lykke.Service.BlockchainApi.Contract.Testing;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
-
-namespace Lykke.Service.EthereumApi.Controllers
+namespace Lykke.Service.Icon.Api.Controllers
 {
     [PublicAPI, Route("/api/testing")]
     public class TestingController : Controller

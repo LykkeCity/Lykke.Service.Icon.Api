@@ -1,18 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Lykke.Service.BlockchainApi.Contract.Transactions;
+using Lykke.Service.Icon.Api.Core;
+using Lykke.Service.Icon.Api.Core.Domain;
+using Lykke.Service.Icon.Api.Core.Services;
 using Lykke.Service.Icon.Api.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Lykke.Service.Icon.Api.Controllers
 {
     [PublicAPI, Route("/api/transactions/history")]
     public class TransactionsHistoryController : Controller
     {
-        public TransactionsHistoryController()
+        private readonly ITransactionHistoryService _transactionHistoryService;
+
+        public TransactionsHistoryController(ITransactionHistoryService transactionHistoryService)
         {
+            _transactionHistoryService = transactionHistoryService;
         }
         
         
@@ -55,10 +62,10 @@ namespace Lykke.Service.Icon.Api.Controllers
             {
                 Amount = transactionReceipt.Amount.ToString(),
                 AssetId = Constants.AssetId,
-                FromAddress = Address.AddChecksum(transactionReceipt.From),
+                FromAddress = transactionReceipt.From,
                 Hash = transactionReceipt.Hash,
                 Timestamp = DateTimeOffset.FromUnixTimeSeconds((long) transactionReceipt.Timestamp).UtcDateTime,
-                ToAddress = Address.AddChecksum(transactionReceipt.To)
+                ToAddress = transactionReceipt.To
             };
         }
     }

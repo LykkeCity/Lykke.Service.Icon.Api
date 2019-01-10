@@ -6,14 +6,14 @@ namespace Lykke.Service.Icon.Api.Core.Domain
 {
     public class BuildTransactionResult
     {
-        public class TransactionContext
+        public class TransactionContext : BuildTransactionResult
         {
             public string TransactionHash { get; set; }
         }
 
-        public class Error
+        public class Error : BuildTransactionResult
         {
-            public BuildTransactionError Error { get; set; }
+            public BuildTransactionError Type { get; set; }
         }
     }
 }

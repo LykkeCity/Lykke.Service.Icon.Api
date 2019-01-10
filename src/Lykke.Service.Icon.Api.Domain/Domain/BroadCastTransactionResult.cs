@@ -4,16 +4,16 @@ using System.Text;
 
 namespace Lykke.Service.Icon.Api.Core.Domain
 {
-    public class BroadCastTransactionResult
+    public class BroadcastTransactionResult
     {
-        public class TransactionContext
+        public class TransactionContext : BroadcastTransactionResult
         {
             public string TransactionHash { get; set; }
         }
 
-        public class Error
+        public class Error : BroadcastTransactionResult
         {
-            public BuildTransactionError Error { get; set; }
+            public BroadcastTransactionError Type { get; set; }
         }
     }
 }

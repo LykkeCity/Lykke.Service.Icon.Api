@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lykke.Service.Icon.Api.Core.Domain
 {
-    public enum BroadCastTransactionError
+    public enum BroadcastTransactionError
     {
         AmountIsTooSmall = 0,
         BalanceIsNotEnough = 1,
