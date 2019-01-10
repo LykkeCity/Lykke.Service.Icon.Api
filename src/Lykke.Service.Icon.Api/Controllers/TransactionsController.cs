@@ -1,16 +1,16 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using System.Numerics;
+using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Lykke.Service.BlockchainApi.Contract;
 using Lykke.Service.BlockchainApi.Contract.Transactions;
+using Lykke.Service.Icon.Api.Core.Domain;
+using Lykke.Service.Icon.Api.Core.Services;
 using Lykke.Service.Icon.Api.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Numerics;
-using System.Threading.Tasks;
-using Lykke.Service.Icon.Api.Core.Domain;
-using Lykke.Service.Icon.Api.Core.Services;
 
-namespace Lykke.Service.EthereumApi.Controllers
+namespace Lykke.Service.Icon.Api.Controllers
 {
     [PublicAPI, Route("api/transactions")]
     public class TransactionsController : Controller
@@ -49,7 +49,7 @@ namespace Lykke.Service.EthereumApi.Controllers
             }
             else if (buildResult is BuildTransactionResult.Error error)
             {
-                switch (error.Error)
+                switch (error.Type)
                 {
                     case BuildTransactionError.AmountIsTooSmall:
                         return BadRequest(
@@ -92,7 +92,7 @@ namespace Lykke.Service.EthereumApi.Controllers
                 signedTxData: request.SignedTransaction
             );
 
-            if (broadcastResult is BroadcastTransactionResult.TransactionHash)
+            if (broadcastResult is BroadcastTransactionResult.TransactionContext)
             {
                 return Ok();
             }
@@ -151,7 +151,7 @@ namespace Lykke.Service.EthereumApi.Controllers
                 {
                     Amount = txState.Amount.ToString(),
                     Block = txState.BlockNumber.HasValue ? (long) txState.BlockNumber.Value : 0,
-                    Fee = (txState.GasAmount * txState.GasPrice).ToString(),
+                    Fee = (txState.StepAmount * txState.StepPrice).ToString(),
                     Hash = txState.Hash,
                     OperationId = txState.TransactionId
                 };

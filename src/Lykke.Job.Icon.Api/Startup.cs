@@ -79,7 +79,7 @@ namespace Lykke.Job.Icon.Api
                     _monitoringServiceUrl = appSettings.MonitoringServiceClient.MonitoringServiceUrl;
 
                 services.AddLykkeLogging(
-                    settingsManager.ConnectionString(s => s.Icon.ApiJob.Db.LogsConnString),
+                    settingsManager.ConnectionString(s => s.IconApiJob.Db.LogsConnString),
                     "Icon.ApiJobLog",
                     appSettings.SlackNotifications.AzureQueue.ConnectionString,
                     appSettings.SlackNotifications.AzureQueue.QueueName);
@@ -87,7 +87,7 @@ namespace Lykke.Job.Icon.Api
                 var builder = new ContainerBuilder();
                 builder.Populate(services);
 
-                builder.RegisterModule(new JobModule(appSettings.Icon.ApiJob, settingsManager.Nested(x => x.Icon.ApiJob)));
+                builder.RegisterModule(new JobModule(appSettings.IconApiJob, settingsManager.Nested(x => x.IconApiJob)));
 
                 ApplicationContainer = builder.Build();
 

@@ -31,7 +31,7 @@ namespace Lykke.Service.Icon.Api
                 options.Logs = logs =>
                 {
                     logs.AzureTableName = "Icon.ApiLog";
-                    logs.AzureTableConnectionStringResolver = settings => settings.Icon.ApiService.Db.LogsConnString;
+                    logs.AzureTableConnectionStringResolver = settings => settings.IconApiService.Db.LogsConnString;
 
                     // TODO: You could add extended logging configuration here:
                     /* 
