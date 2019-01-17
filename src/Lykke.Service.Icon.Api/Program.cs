@@ -1,17 +1,25 @@
-﻿using Lykke.Sdk;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Lykke.Quintessence;
+using Lykke.Service.Icon.Api.Settings;
 
 namespace Lykke.Service.Icon.Api
 {
-    internal sealed class Program
+    internal static class Program
     {
-        public static async Task Main(string[] args)
+        #if DEBUG
+        
+        private const bool IsDebug = true;
+        
+        #else
+
+        private const bool IsDebug = false;
+
+        #endif
+        
+        private static Task Main()
         {
-#if DEBUG
-            await LykkeStarter.Start<Startup>(true);
-#else
-            await LykkeStarter.Start<Startup>(false);
-#endif
+            return ApiStarter
+                .StartAsync<Startup, IconApiSettings>(IsDebug);
         }
     }
 }

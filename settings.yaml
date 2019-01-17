@@ -1,36 +1,38 @@
-Icon.ApiService:
-    Db:
-        LogsConnString:
-            settings-key: LogsConnString
-            types:
-              - AzureTableStorage
-Icon.ApiJob:
+Api:
+  ConfirmationLevel:
+    settings-key: Bcn-ICX-ConfirmationLevel
+  GasPriceRange:
+    settings-key: Bcn-ICX-GasPriceRange
+  GasReserve:
+    settings-key: Bcn-ICX-GasReserve
+  IsMainNet:
+    settings-key: Bcn-ICX-IsMainNet
+  MaxGasAmount:
+    settings-key: Bcn-ICX-MaxGasAmount
   Db:
-    LogsConnString:
-      settings-key: LogsConnString
+    DataConnString:
+      settings-key: Bcn-ICX-DataConnString
       types:
         - AzureTableStorage
+    LogsConnString:
+      settings-key: BcnLogsConnString
+      types:
+        - AzureTableStorage
+  RpcNode:
+    ApiUrl:
+      settings-key: Bcn-ICX-RpcNodeApiUrl
+    ConnectionTimeout:
+      settings-key: Bcn-ICX-RpcNodeConnectionTimeout
+    EnableTelemetry:
+      settings-key: Bcn-ICX-RpcNodeEnableTelemetry
+SlackNotifications:
   AzureQueue:
     ConnectionString:
-      settings-key: ConnectionString
+      settings-key: SlackNotificationsConnString
       types:
         - AzureTableStorage
-  Rabbit:
-    ConnectionString:
-      settings-key: ConnectionString
-      types:
-        - RabbitMq
-    ExchangeName:
-      settings-key: ExchangeName
-SlackNotifications:
-    AzureQueue:
-        ConnectionString:
-            settings-key: SlackNotificationsConnString
-            types:
-                - AzureTableStorage
-        QueueName:
-            settings-key: SlackQueueName
+    QueueName:
+      settings-key: SlackQueueName
 MonitoringServiceClient:
-    MonitoringServiceUrl:
-        settings-key: MonitoringServiceUrl
-
+  MonitoringServiceUrl:
+    settings-key: MonitoringServiceUrl

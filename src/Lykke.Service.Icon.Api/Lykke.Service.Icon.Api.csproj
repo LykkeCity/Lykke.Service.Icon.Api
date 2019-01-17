@@ -1,39 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-    <OutputType>Exe</OutputType>
-    <Version>1.0.1</Version>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <NoWarn>1701;1702;1705;1591</NoWarn>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <NoWarn>1701;1702;1705;1591</NoWarn>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Update="Dockerfile">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Lykke.Sdk" Version="5.3.0" />
-    <PackageReference Include="Lykke.Service.BlockchainApi.Contract" Version="13.2.1" />
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.1.3" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Lykke.Service.Icon.Api.AzureRepositories\Lykke.Service.Icon.Api.AzureRepositories.csproj" />
-    <ProjectReference Include="..\Lykke.Service.Icon.Api.DomainServices\Lykke.Service.Icon.Api.Services.csproj" />
-    <ProjectReference Include="..\Lykke.Service.Icon.Api.Domain\Lykke.Service.Icon.Api.Core.csproj" />
-  </ItemGroup>
-  <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <LangVersion>7.1</LangVersion>
+        <Version>1.0.1</Version>
+    </PropertyGroup>
+
     <ItemGroup>
-      <DocFile Include="$(OutputPath)$(AssemblyName).xml" />
+        <None Update="Dockerfile">
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </None>
     </ItemGroup>
-    <Copy SourceFiles="@(DocFile)" DestinationFolder="$(PublishDir)" SkipUnchangedFiles="false" />
-  </Target>
+    
+    <ItemGroup>
+        <PackageReference Include="Lykke.Quintessence.Api" Version="0.0.35-beta" />
+        <PackageReference Include="Lykke.Quintessence.Core.Telemetry" Version="0.0.35-beta" />
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\Lykke.Service.Icon.Api.DomainServices\Lykke.Service.Icon.Api.Services.csproj" />
+    </ItemGroup>
+
 </Project>
