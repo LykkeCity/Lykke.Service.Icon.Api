@@ -5,8 +5,12 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Lykke.Common" Version="7.0.4" />
+    <PackageReference Include="Lykke.SettingsReader" Version="4.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\contract\Lykke.Job.Icon.Api.Contract\Lykke.Job.Icon.Api.Contract.csproj" />
+    <Folder Include="Common\" />
+    <Folder Include="Domain\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 </Project>
