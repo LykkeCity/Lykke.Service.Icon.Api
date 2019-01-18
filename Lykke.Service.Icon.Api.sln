@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Tools", "6. Tools", "{62
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lykke.Service.Icon.Api.Examples", "tests\Lykke.Service.Icon.Api.Examples\Lykke.Service.Icon.Api.Examples\Lykke.Service.Icon.Api.Examples.csproj", "{6443C3D1-FEAF-4BF8-9678-FC3D28A51C40}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Job.Icon", "src\Lykke.Job.Icon\Lykke.Job.Icon.csproj", "{E94813F4-4144-4E45-BF81-B40F9EA174C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{6443C3D1-FEAF-4BF8-9678-FC3D28A51C40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6443C3D1-FEAF-4BF8-9678-FC3D28A51C40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6443C3D1-FEAF-4BF8-9678-FC3D28A51C40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E94813F4-4144-4E45-BF81-B40F9EA174C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E94813F4-4144-4E45-BF81-B40F9EA174C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E94813F4-4144-4E45-BF81-B40F9EA174C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E94813F4-4144-4E45-BF81-B40F9EA174C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{A61FFDEE-5725-4650-A788-6E55EE5EFD5B} = {8F9036B1-5106-4C69-B2D2-B78EE52687A0}
 		{9E97645E-425F-49DF-8533-0098805FF80A} = {EE7F3159-E06C-497F-96D4-DB2A6B03A6AB}
 		{6443C3D1-FEAF-4BF8-9678-FC3D28A51C40} = {8F9036B1-5106-4C69-B2D2-B78EE52687A0}
+		{E94813F4-4144-4E45-BF81-B40F9EA174C7} = {EE7F3159-E06C-497F-96D4-DB2A6B03A6AB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB6C0EF4-AA6A-444D-8603-3669F73A58BC}

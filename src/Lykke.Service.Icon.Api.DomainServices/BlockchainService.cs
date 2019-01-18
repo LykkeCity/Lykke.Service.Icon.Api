@@ -5,7 +5,6 @@ using Lykke.Quintessence.Domain;
 using Lykke.Quintessence.Domain.Services;
 using Lykke.Quintessence.Domain.Services.Strategies;
 using Lykke.Quintessence.Domain.Services.Utils;
-using Lykke.SettingsReader;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -21,22 +20,19 @@ namespace Lykke.Service.Icon.Api.Services
         private readonly IChainId _chainId;
         private readonly IIconService _iconService;
         private readonly IGetTransactionReceiptsStrategy _getTransactionReceiptsStrategy;
-        private readonly INonceService _nonceService;
         private readonly ITryGetTransactionErrorStrategy _tryGetTransactionErrorStrategy;
 
 
         public BlockchainService(
             IIconService iconService,
             IGetTransactionReceiptsStrategy getTransactionReceiptsStrategy,
-            INonceService nonceService,
             ITryGetTransactionErrorStrategy tryGetTransactionErrorStrategy,
-            Settings settings,
+            DefaultBlockchainService.Settings settings,
             IChainId chainId)
         {
             _chainId = chainId;
             _iconService = iconService;
             _getTransactionReceiptsStrategy = getTransactionReceiptsStrategy;
-            _nonceService = nonceService;
             _tryGetTransactionErrorStrategy = tryGetTransactionErrorStrategy;
 
             _confirmationLevel = new SettingManager<int>
@@ -61,18 +57,33 @@ namespace Lykke.Service.Icon.Api.Services
             var transactionHash = SignedTransaction.GetTransactionHash(props);
             var txHashBytes = new Bytes(transactionHash);
 
-            if (await _iconService.GetTransaction(txHashBytes) != null)
+            var existingHash = await WrapRpcErrorWhenTransactionIsNotYetConfirmedAsync(async () =>
             {
-                return txHashBytes.ToHexString(true);
-            }
+                if (await _iconService.GetTransactionResult(txHashBytes) != null)
+                {
+                    return txHashBytes.ToHexString(true);
+                }
+
+                return null;
+            });
 
             var receivedBytes = await _iconService.SendTransaction(transaction);
 
             for (var i = 0; i < 10; i++)
             {
-                if (await _iconService.GetTransactionResult(receivedBytes) != null)
+                existingHash = await WrapRpcErrorWhenTransactionIsNotYetConfirmedAsync(async () =>
                 {
-                    return receivedBytes.ToHexString(true);
+                    if (await _iconService.GetTransactionResult(receivedBytes) != null)
+                    {
+                        return receivedBytes.ToHexString(true);
+                    }
+
+                    return null;
+                });
+
+                if (!string.IsNullOrEmpty(existingHash))
+                {
+                    return existingHash;
                 }
                 else
                 {
@@ -93,6 +104,7 @@ namespace Lykke.Service.Icon.Api.Services
             BigInteger gasAmount,
             BigInteger gasPrice)
         {
+            var timestamap = DateTimeOffset.UtcNow.Add(TimeSpan.FromMinutes(5)).ToUnixTimeSeconds() * 1_000_000L;
             var transaction = Lykke.Icon.Sdk.TransactionBuilder
                 .CreateBuilder()
                 .Nid(_chainId.Value)
@@ -100,6 +112,7 @@ namespace Lykke.Service.Icon.Api.Services
                 .From(new Address(from))
                 .To(new Address(to))
                 .Value(amount)
+                .Timestamp(timestamap)
                 //.Nonce(await _nonceService.GetNextNonceAsync(from))
                 .Build();
             var rpcObject = SignedTransaction.GetTransactionProperties(transaction);
@@ -224,12 +237,19 @@ namespace Lykke.Service.Icon.Api.Services
             return (minGasPrice, maxGasPrice);
         }
 
-
-        public class Settings
+        private static async Task<T> WrapRpcErrorWhenTransactionIsNotYetConfirmedAsync<T>(Func<Task<T>> func)
         {
-            public IReloadingManager<int> ConfirmationLevel { get; set; }
+            try
+            {
+                return await func();
+            }
+            catch (Lykke.Icon.Sdk.Transport.JsonRpc.RpcErrorException e)
+            {
+                if (e.Code != -32602 && e.Message != "Invalid params txHash")
+                    throw;
+            }
 
-            public IReloadingManager<string> GasPriceRange { get; set; }
+            return default(T);
         }
     }
 }

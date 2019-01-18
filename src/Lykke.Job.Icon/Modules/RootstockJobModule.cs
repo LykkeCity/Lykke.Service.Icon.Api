@@ -3,6 +3,7 @@ using Autofac;
 using JetBrains.Annotations;
 using Lykke.Icon.Sdk;
 using Lykke.Icon.Sdk.Transport.Http;
+using Lykke.Job.Icon.Settings;
 using Lykke.Quintessence.Core.Blockchain;
 using Lykke.Quintessence.Core.Crypto;
 using Lykke.Quintessence.Core.DependencyInjection;
@@ -12,19 +13,18 @@ using Lykke.Quintessence.Domain.Services.DependencyInjection;
 using Lykke.Quintessence.Domain.Services.Strategies;
 using Lykke.Quintessence.Settings;
 using Lykke.Service.Icon.Api.Services;
-using Lykke.Service.Icon.Api.Settings;
 using Lykke.SettingsReader;
 using Multiformats.Hash;
 
-namespace Lykke.Service.Icon.Api.Modules
+namespace Lykke.Job.Icon.Modules
 {
     [UsedImplicitly]
-    public class IconApiModule : Module
+    public class IconJobModule : Module
     {
-        private readonly IReloadingManager<AppSettings<IconApiSettings>> _appSettings;
+        private readonly IReloadingManager<AppSettings<IconJobSettings>> _appSettings;
 
-        public IconApiModule(
-            IReloadingManager<AppSettings<IconApiSettings>> appSettings)
+        public IconJobModule(
+            IReloadingManager<AppSettings<IconJobSettings>> appSettings)
         {
             _appSettings = appSettings;
         }
@@ -32,22 +32,18 @@ namespace Lykke.Service.Icon.Api.Modules
         protected override void Load(
             ContainerBuilder builder)
         {
-            var networkId = _appSettings.CurrentValue.Api.IsMainNet ? 1 : 2;
+            var networkId = _appSettings.CurrentValue.Job.IsMainNet ? 1 : 2;
 
             var settings = new DefaultBlockchainService.Settings
             {
-                ConfirmationLevel = _appSettings.Nested(x => x.Api.ConfirmationLevel),
-                GasPriceRange = _appSettings.Nested(x => x.Api.GasPriceRange)
+                ConfirmationLevel = _appSettings.Nested(x => x.Job.ConfirmationLevel),
+                GasPriceRange = _appSettings.Nested(x => x.Job.GasPriceRange)
             };
 
             builder
                 .RegisterInstance(settings)
                 .SingleInstance();
-
-            builder
-                .UseAITelemetryConsumer()
-                .UseAssetService<IconAssetService>()
-                .UseChainId(networkId);
+            builder.UseChainId(networkId);
 
             builder
                 .UseAITelemetryConsumer()
@@ -58,8 +54,8 @@ namespace Lykke.Service.Icon.Api.Modules
             builder
                 .UseAITelemetryConsumer()
                 .RegisterInstance(new HttpProvider(
-                    new HttpClient(), 
-                    _appSettings.CurrentValue.Api.RpcNode.ApiUrl))
+                    new HttpClient(),
+                    _appSettings.CurrentValue.Job.RpcNode.ApiUrl))
                 .As<IProvider>()
                 .SingleInstance();
 
