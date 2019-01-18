@@ -1,0 +1,46 @@
+Job:
+  BalanceMonitoringMaxDegreeOfParallelism:
+    settings-key: Bcn-ICX-Job-BalanceMonitoringMaxDegreeOfParallelism
+  BlockchainIndexationMaxDegreeOfParallelism:
+    settings-key: Bcn-ICX-Job-BlockchainIndexationMaxDegreeOfParallelism
+  BlockLockDuration:
+    settings-key: Bcn-ICX-Job-BlockLockDuration
+  ConfirmationLevel:
+    settings-key: Bcn-ICX-ConfirmationLevel
+  Db:
+    DataConnString:
+      settings-key: Bcn-ICX-DataConnString
+      types:
+        - AzureTableStorage
+    LogsConnString:
+      settings-key: BcnLogsConnString
+      types:
+        - AzureTableStorage
+  GasPriceRange:
+    settings-key: Bcn-ICX-GasPriceRange
+  IndexOnlyOwnTransactions:
+    settings-key: Bcn-ICX-Job-IndexOnlyOwnTransactions
+  IsMainNet:
+    settings-key: Bcn-ICX-IsMainNet
+  MinBlockNumberToIndex:
+    settings-key: Bcn-ICX-Job-MinBlockNumberToIndex
+  RpcNode:
+    ApiUrl:
+      settings-key: Bcn-ICX-RpcNodeApiUrl
+    ConnectionTimeout:
+      settings-key: Bcn-ICX-RpcNodeConnectionTimeout
+    EnableTelemetry:
+      settings-key: Bcn-ICX-RpcNodeEnableTelemetry
+  TransactionMonitoringMaxDegreeOfParallelism:
+    settings-key: Bcn-ICX-Job-TransactionMonitoringMaxDegreeOfParallelism
+SlackNotifications:
+  AzureQueue:
+    ConnectionString:
+      settings-key: SlackNotificationsConnString
+      types:
+        - AzureTableStorage
+    QueueName:
+      settings-key: SlackQueueName
+MonitoringServiceClient:
+  MonitoringServiceUrl:
+    settings-key: MonitoringServiceUrl

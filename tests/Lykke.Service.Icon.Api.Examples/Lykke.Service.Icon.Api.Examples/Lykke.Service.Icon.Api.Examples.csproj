@@ -7,9 +7,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="BouncyCastle" Version="1.8.4" />
+    <PackageReference Include="Lykke.SettingsReader" Version="4.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Lykke.Service.Icon.Api\Lykke.Service.Icon.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Lykke.Icon.Sdk">
+      <HintPath>C:\Users\Aleks\.nuget\packages\lykke.icon.sdk\0.2.2\lib\netstandard2.0\Lykke.Icon.Sdk.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\launchSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

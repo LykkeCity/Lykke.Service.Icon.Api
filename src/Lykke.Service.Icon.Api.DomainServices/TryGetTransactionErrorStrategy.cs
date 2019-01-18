@@ -8,13 +8,8 @@ namespace Lykke.Service.Icon.Api.Services
 {
     public class TryGetTransactionErrorStrategy : ITryGetTransactionErrorStrategy
     {
-        private readonly IParityApiClient _parityApiClient;
-
-
-        public TryGetTransactionErrorStrategy(
-            IParityApiClient parityApiClient)
+        public TryGetTransactionErrorStrategy()
         {
-            _parityApiClient = parityApiClient;
         }
 
         //https://github.com/icon-project/icon-rpc-server/blob/master/docs/icon-json-rpc-v3.md#icx_gettransactionresult
