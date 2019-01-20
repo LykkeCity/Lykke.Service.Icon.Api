@@ -1,4 +1,4 @@
 FROM microsoft/dotnet:2.1-aspnetcore-runtime
 WORKDIR /app
 COPY . .
-ENTRYPOINT ["dotnet", "Lykke.BilJob.Rootstock.dll"]
+ENTRYPOINT ["dotnet", "Lykke.Job.Icon.dll"]
