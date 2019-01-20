@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Lykke.Icon.Sdk;
+using Lykke.Icon.Sdk.Data;
 using Lykke.Quintessence.Domain;
 using Lykke.Quintessence.Domain.Services.Strategies;
-using Lykke.Quintessence.RpcClient;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
-using Lykke.Icon.Sdk;
-using Lykke.Icon.Sdk.Data;
+using System.Threading.Tasks;
 using TransactionResult = Lykke.Icon.Sdk.Data.TransactionResult;
 
 namespace Lykke.Service.Icon.Api.Services

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Lykke.Quintessence.Domain.Services;
+﻿using Lykke.Quintessence.Domain.Services;
 
 namespace Lykke.Service.Icon.Api.Services
 {
