@@ -13,10 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. Solution items", "0. Sol
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Domain", "1. Domain", "{CC2067D7-1971-47BB-B491-5649EA3C18B2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Service.Icon.Api.Core", "src\Lykke.Service.Icon.Api.Domain\Lykke.Service.Icon.Api.Core.csproj", "{F5B2F6B8-A8CC-4612-8F1D-C063EB8C8955}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Service.Icon.Api.Services", "src\Lykke.Service.Icon.Api.DomainServices\Lykke.Service.Icon.Api.Services.csproj", "{2D5F52EC-2A27-4045-81ED-72355E2A6325}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Repositories", "2. Repositories", "{BF745453-B940-470E-81BC-43FB67703D4E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Service.Icon.Api.AzureRepositories", "src\Lykke.Service.Icon.Api.AzureRepositories\Lykke.Service.Icon.Api.AzureRepositories.csproj", "{4BE49E02-AAAD-460B-8D00-57F412A3D181}"
@@ -31,9 +27,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Service.Icon.Api", "s
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Tools", "6. Tools", "{6249E408-35E9-4D10-AD33-9F66845C4B3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lykke.Service.Icon.Api.Examples", "tests\Lykke.Service.Icon.Api.Examples\Lykke.Service.Icon.Api.Examples\Lykke.Service.Icon.Api.Examples.csproj", "{6443C3D1-FEAF-4BF8-9678-FC3D28A51C40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Service.Icon.Api.Examples", "tests\Lykke.Service.Icon.Api.Examples\Lykke.Service.Icon.Api.Examples\Lykke.Service.Icon.Api.Examples.csproj", "{6443C3D1-FEAF-4BF8-9678-FC3D28A51C40}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Job.Icon", "src\Lykke.Job.Icon\Lykke.Job.Icon.csproj", "{E94813F4-4144-4E45-BF81-B40F9EA174C7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Service.Icon.Api.Core", "src\Lykke.Service.Icon.Api.Core\Lykke.Service.Icon.Api.Core.csproj", "{F2BC3777-4BFB-4D0D-B2DE-0750B3832197}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Service.Icon.Api.Services", "src\Lykke.Service.Icon.Api.Services\Lykke.Service.Icon.Api.Services.csproj", "{3E550D09-F5AF-4180-B0DF-88E6F1BEB288}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,14 +41,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F5B2F6B8-A8CC-4612-8F1D-C063EB8C8955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5B2F6B8-A8CC-4612-8F1D-C063EB8C8955}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5B2F6B8-A8CC-4612-8F1D-C063EB8C8955}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5B2F6B8-A8CC-4612-8F1D-C063EB8C8955}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2D5F52EC-2A27-4045-81ED-72355E2A6325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2D5F52EC-2A27-4045-81ED-72355E2A6325}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2D5F52EC-2A27-4045-81ED-72355E2A6325}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2D5F52EC-2A27-4045-81ED-72355E2A6325}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4BE49E02-AAAD-460B-8D00-57F412A3D181}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4BE49E02-AAAD-460B-8D00-57F412A3D181}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BE49E02-AAAD-460B-8D00-57F412A3D181}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,18 +61,26 @@ Global
 		{E94813F4-4144-4E45-BF81-B40F9EA174C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E94813F4-4144-4E45-BF81-B40F9EA174C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E94813F4-4144-4E45-BF81-B40F9EA174C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2BC3777-4BFB-4D0D-B2DE-0750B3832197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2BC3777-4BFB-4D0D-B2DE-0750B3832197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2BC3777-4BFB-4D0D-B2DE-0750B3832197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2BC3777-4BFB-4D0D-B2DE-0750B3832197}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E550D09-F5AF-4180-B0DF-88E6F1BEB288}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E550D09-F5AF-4180-B0DF-88E6F1BEB288}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E550D09-F5AF-4180-B0DF-88E6F1BEB288}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E550D09-F5AF-4180-B0DF-88E6F1BEB288}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F5B2F6B8-A8CC-4612-8F1D-C063EB8C8955} = {CC2067D7-1971-47BB-B491-5649EA3C18B2}
-		{2D5F52EC-2A27-4045-81ED-72355E2A6325} = {CC2067D7-1971-47BB-B491-5649EA3C18B2}
 		{4BE49E02-AAAD-460B-8D00-57F412A3D181} = {BF745453-B940-470E-81BC-43FB67703D4E}
 		{A61FFDEE-5725-4650-A788-6E55EE5EFD5B} = {8F9036B1-5106-4C69-B2D2-B78EE52687A0}
 		{9E97645E-425F-49DF-8533-0098805FF80A} = {EE7F3159-E06C-497F-96D4-DB2A6B03A6AB}
 		{6443C3D1-FEAF-4BF8-9678-FC3D28A51C40} = {8F9036B1-5106-4C69-B2D2-B78EE52687A0}
 		{E94813F4-4144-4E45-BF81-B40F9EA174C7} = {EE7F3159-E06C-497F-96D4-DB2A6B03A6AB}
+		{F2BC3777-4BFB-4D0D-B2DE-0750B3832197} = {CC2067D7-1971-47BB-B491-5649EA3C18B2}
+		{3E550D09-F5AF-4180-B0DF-88E6F1BEB288} = {CC2067D7-1971-47BB-B491-5649EA3C18B2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB6C0EF4-AA6A-444D-8603-3669F73A58BC}
