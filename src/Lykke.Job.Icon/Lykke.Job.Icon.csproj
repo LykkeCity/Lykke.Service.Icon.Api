@@ -20,7 +20,8 @@
     </ItemGroup>
     
     <ItemGroup>
-      <ProjectReference Include="..\Lykke.Service.Icon.Api.DomainServices\Lykke.Service.Icon.Api.Services.csproj" />
+      <ProjectReference Include="..\Lykke.Service.Icon.Api.Core\Lykke.Service.Icon.Api.Core.csproj" />
+      <ProjectReference Include="..\Lykke.Service.Icon.Api.Services\Lykke.Service.Icon.Api.Services.csproj" />
     </ItemGroup>
 
 </Project>

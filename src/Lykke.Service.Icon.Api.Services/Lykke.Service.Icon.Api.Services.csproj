@@ -9,7 +9,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lykke.Service.Icon.Api.Domain\Lykke.Service.Icon.Api.Core.csproj" />
+    <ProjectReference Include="..\Lykke.Service.Icon.Api.Core\Lykke.Service.Icon.Api.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Lykke.Quintessence.Api.DomainServices">
