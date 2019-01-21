@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -16,12 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Lykke.Service.Icon.Api\Lykke.Service.Icon.Api.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Lykke.Icon.Sdk">
-      <HintPath>C:\Users\Aleks\.nuget\packages\lykke.icon.sdk\0.2.2\lib\netstandard2.0\Lykke.Icon.Sdk.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>
