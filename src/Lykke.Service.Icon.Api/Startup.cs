@@ -1,4 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using System.Reflection;
+using FluentValidation.AspNetCore;
+using JetBrains.Annotations;
 using Lykke.Quintessence;
 using Lykke.Sdk;
 using Lykke.Service.Icon.Api.Modules;
@@ -11,6 +13,12 @@ namespace Lykke.Service.Icon.Api
     {
         protected override string IntegrationName
             => "Icon";
+
+        protected override void ConfigureFluentValidation(
+            FluentValidationMvcConfiguration configuration)
+        {
+            configuration.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        }
 
         protected override void RegisterAdditionalModules(
             IModuleRegistration modules)

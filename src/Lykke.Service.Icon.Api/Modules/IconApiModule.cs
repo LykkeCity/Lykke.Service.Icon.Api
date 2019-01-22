@@ -51,6 +51,18 @@ namespace Lykke.Service.Icon.Api.Modules
 
             builder
                 .UseAITelemetryConsumer()
+                .RegisterType<CalculateTransactionAmountStrategy>()
+                .As<ICalculateTransactionAmountStrategy>()
+                .SingleInstance();
+
+            builder
+                .UseAITelemetryConsumer()
+                .RegisterType<CalculateGasAmountStrategy>()
+                .As<ICalculateGasAmountStrategy>()
+                .SingleInstance();
+
+            builder
+                .UseAITelemetryConsumer()
                 .RegisterType<BlockchainService>()
                 .As<IBlockchainService>()
                 .SingleInstance();

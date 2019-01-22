@@ -10,7 +10,7 @@ namespace Lykke.Job.Icon
     public class Startup : JobStartupBase<IconJobSettings>
     {
         protected override string IntegrationName
-            => "Rootstock";
+            => "Icon";
 
         protected override void RegisterAdditionalModules(
             IModuleRegistration modules)
