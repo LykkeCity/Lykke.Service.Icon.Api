@@ -108,7 +108,7 @@ namespace Lykke.Service.Icon.Api.Services
             BigInteger gasAmount,
             BigInteger gasPrice)
         {
-            var timestamap = DateTimeOffset.UtcNow.Add(TimeSpan.FromMinutes(5)).ToUnixTimeSeconds() * 1_000_000L;
+            var timestamap = DateTimeOffset.UtcNow.Add(TimeSpan.FromMinutes(10)).ToUnixTimeSeconds() * 1_000_000L;
             var transaction = Lykke.Icon.Sdk.TransactionBuilder
                 .CreateBuilder()
                 .Nid(_chainId.Value)
