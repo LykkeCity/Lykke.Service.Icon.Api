@@ -7,6 +7,7 @@ using System.Numerics;
 using System.Text.RegularExpressions;
 using Lykke.Icon.Sdk;
 using Lykke.Icon.Sdk.Data;
+using Lykke.Service.Icon.Api.Core.Helpers;
 
 namespace Lykke.Service.Icon.Api.Examples
 {
@@ -23,12 +24,13 @@ namespace Lykke.Service.Icon.Api.Examples
             BigInteger gasPrice = 1;
             var transaction = await blockchainService.BuildTransactionAsync(from, to, amount, gasAmount, gasPrice);
 
+            string txDataStr = System.Text.Encoding.UTF8.DecodeBase64(transaction);
             Regex regex = new Regex("timestamp\\.[^\\.]+\\.");
-            transaction = regex.Replace(transaction, "timestamp.0x226c8.");
+            txDataStr = regex.Replace(txDataStr, "timestamp.0x226c8.");
             var expectedItToBe =
                 "icx_sendTransaction.from.hx659c15230d21ffe9f4c841e2a33126596b459226.nid.0x2.stepLimit.0xf4240.timestamp.0x226c8.to.hx99b9ecb0973b224105b57be18a6e92ab98e2601f.value.0xde0b6b3a7640000.version.0x3";
 
-            Assert.Equal(expectedItToBe, transaction);
+            Assert.Equal(expectedItToBe, txDataStr);
 
         }
 
@@ -43,15 +45,17 @@ namespace Lykke.Service.Icon.Api.Examples
             BigInteger gasPrice = 1;
             var transaction = await blockchainService.BuildTransactionAsync(from, to, amount, gasAmount, gasPrice);
 
-            var iconTransaction = TransactionDeserializer.Deserialize(transaction);
+            string txDataStr = System.Text.Encoding.UTF8.DecodeBase64(transaction);
+            var iconTransaction = TransactionDeserializer.Deserialize(txDataStr);
             var signedTransaction = new SignedTransaction(iconTransaction, _secretWallet);
             var properties = signedTransaction.GetProperties();
             var transactionProperties = signedTransaction.GetTransactionProperties();
             var transactionHash = SignedTransaction.GetTransactionHash(transactionProperties);
             var serializedSignedTransaction = SignedTransaction.Serialize(properties);
+            string serializedSignedTransactionBase64 = System.Text.Encoding.UTF8.EncodeBase64(serializedSignedTransaction);
 
             var expectedTxHash = (new Bytes(transactionHash)).ToHexString(true);
-            var txHash = await blockchainService.BroadcastTransactionAsync(serializedSignedTransaction);
+            var txHash = await blockchainService.BroadcastTransactionAsync(serializedSignedTransactionBase64);
 
             Assert.Equal(expectedTxHash, txHash);
         }

@@ -6,9 +6,12 @@ using Lykke.Quintessence.Domain.Services;
 using Lykke.Quintessence.Domain.Services.Strategies;
 using Lykke.Quintessence.Domain.Services.Utils;
 using System;
+using System.Buffers.Text;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Text;
 using System.Threading.Tasks;
+using Lykke.Service.Icon.Api.Core.Helpers;
 using TransactionResult = Lykke.Quintessence.Domain.TransactionResult;
 
 namespace Lykke.Service.Icon.Api.Services
@@ -52,7 +55,8 @@ namespace Lykke.Service.Icon.Api.Services
         public virtual async Task<string> BroadcastTransactionAsync(
             string signedTxData)
         {
-            var transaction = SignedTransaction.Deserialize(signedTxData);
+            string txDataStr = System.Text.Encoding.UTF8.DecodeBase64(signedTxData);
+            var transaction = SignedTransaction.Deserialize(txDataStr);
             var props = transaction.GetTransactionProperties();
             var transactionHash = SignedTransaction.GetTransactionHash(props);
             var txHashBytes = new Bytes(transactionHash);
@@ -117,8 +121,9 @@ namespace Lykke.Service.Icon.Api.Services
                 .Build();
             var rpcObject = SignedTransaction.GetTransactionProperties(transaction);
             string serializedTransaction = TransactionSerializer.Serialize(rpcObject);
+            var base64 = System.Text.Encoding.UTF8.EncodeBase64(serializedTransaction);
 
-            return serializedTransaction;
+            return base64;
         }
 
         public virtual async Task<BigInteger> EstimateGasPriceAsync()
