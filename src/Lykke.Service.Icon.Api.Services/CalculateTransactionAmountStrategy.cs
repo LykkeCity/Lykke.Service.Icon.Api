@@ -1,19 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using Lykke.Quintessence.Domain.Services;
+﻿using Lykke.Quintessence.Domain.Services;
 using Lykke.Quintessence.Domain.Services.Strategies;
+using System.Numerics;
+using System.Threading.Tasks;
 
 namespace Lykke.Service.Icon.Api.Services
 {
     public class CalculateTransactionAmountStrategy : ICalculateTransactionAmountStrategy
     {
+        private static BigInteger _transactionCost = BigInteger.Parse("1000000000000000");
+
         public Task<TransactionAmountCalculationResult> ExecuteAsync(IBlockchainService blockchainService, string @from, BigInteger transferAmount, BigInteger gasAmount,
             bool includeFee)
         {
-            return Task.FromResult((TransactionAmountCalculationResult)TransactionAmountCalculationResult.TransactionAmount(100_000));
+            BigInteger result = transferAmount;
+            if (!includeFee)
+                result += _transactionCost;
+
+            return Task.FromResult((TransactionAmountCalculationResult)TransactionAmountCalculationResult.TransactionAmount(result));
         }
     }
 }
