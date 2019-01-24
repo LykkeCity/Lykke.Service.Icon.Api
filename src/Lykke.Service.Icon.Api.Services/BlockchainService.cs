@@ -101,14 +101,15 @@ namespace Lykke.Service.Icon.Api.Services
             );
         }
 
-        public virtual async Task<string> BuildTransactionAsync(
+        public virtual string BuildTransaction(
             string from,
             string to,
             BigInteger amount,
             BigInteger gasAmount,
-            BigInteger gasPrice)
+            BigInteger gasPrice,
+            BigInteger nonce)
         {
-            var timestamap = DateTimeOffset.UtcNow.Add(TimeSpan.FromMinutes(10)).ToUnixTimeSeconds() * 1_000_000L;
+            var timestamap = DateTimeOffset.UtcNow.Add(TimeSpan.FromMinutes(5)).ToUnixTimeSeconds() * 1_000_000L;
             var transaction = Lykke.Icon.Sdk.TransactionBuilder
                 .CreateBuilder()
                 .Nid(_chainId.Value)
@@ -164,6 +165,11 @@ namespace Lykke.Service.Icon.Api.Services
             var iconAddress = new Address(address);
 
             return _iconService.GetBalance(iconAddress);
+        }
+
+        public Task<int> GetConfirmationLevel()
+        {
+            return Task.FromResult(0);
         }
 
         public virtual async Task<BigInteger> GetBestTrustedBlockNumberAsync()
