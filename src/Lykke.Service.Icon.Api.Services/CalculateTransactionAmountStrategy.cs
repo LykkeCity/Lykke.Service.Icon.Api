@@ -16,6 +16,9 @@ namespace Lykke.Service.Icon.Api.Services
             if (includeFee)
                 result -= _transactionCost;
 
+            if (result <= 0)
+                return Task.FromResult((TransactionAmountCalculationResult)TransactionAmountCalculationResult.TransactionAmountIsTooSmall());
+
             return Task.FromResult((TransactionAmountCalculationResult)TransactionAmountCalculationResult.TransactionAmount(result));
         }
     }
