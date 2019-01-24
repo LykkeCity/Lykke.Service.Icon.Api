@@ -13,8 +13,8 @@ namespace Lykke.Service.Icon.Api.Services
             bool includeFee)
         {
             BigInteger result = transferAmount;
-            if (!includeFee)
-                result += _transactionCost;
+            if (includeFee)
+                result -= _transactionCost;
 
             return Task.FromResult((TransactionAmountCalculationResult)TransactionAmountCalculationResult.TransactionAmount(result));
         }
