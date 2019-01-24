@@ -57,6 +57,12 @@ namespace Lykke.Service.Icon.Api.Modules
 
             builder
                 .UseAITelemetryConsumer()
+                .RegisterType<NonceService>()
+                .As<INonceService>()
+                .SingleInstance();
+
+            builder
+                .UseAITelemetryConsumer()
                 .RegisterType<CalculateGasAmountStrategy>()
                 .As<ICalculateGasAmountStrategy>()
                 .SingleInstance();

@@ -53,6 +53,12 @@ namespace Lykke.Job.Icon.Modules
 
             builder
                 .UseAITelemetryConsumer()
+                .RegisterType<NonceService>()
+                .As<INonceService>()
+                .SingleInstance();
+
+            builder
+                .UseAITelemetryConsumer()
                 .RegisterInstance(new HttpProvider(
                     new HttpClient(),
                     _appSettings.CurrentValue.Job.RpcNode.ApiUrl))
