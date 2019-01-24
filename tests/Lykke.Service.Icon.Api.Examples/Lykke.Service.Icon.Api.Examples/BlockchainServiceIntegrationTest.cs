@@ -22,7 +22,7 @@ namespace Lykke.Service.Icon.Api.Examples
             BigInteger amount = BigInteger.Parse("1000000000000000000");
             BigInteger gasAmount = BigInteger.Parse("1000000");
             BigInteger gasPrice = 1;
-            var transaction = await blockchainService.BuildTransactionAsync(from, to, amount, gasAmount, gasPrice);
+            var transaction = blockchainService.BuildTransaction(from, to, amount, gasAmount, gasPrice, 0);
 
             string txDataStr = System.Text.Encoding.UTF8.DecodeBase64(transaction);
             Regex regex = new Regex("timestamp\\.[^\\.]+\\.");
@@ -43,7 +43,7 @@ namespace Lykke.Service.Icon.Api.Examples
             BigInteger amount = BigInteger.Parse("100000000000000");
             BigInteger gasAmount = BigInteger.Parse("1000000");
             BigInteger gasPrice = 1;
-            var transaction = await blockchainService.BuildTransactionAsync(from, to, amount, gasAmount, gasPrice);
+            var transaction = blockchainService.BuildTransaction(from, to, amount, gasAmount, gasPrice, 0);
 
             string txDataStr = System.Text.Encoding.UTF8.DecodeBase64(transaction);
             var iconTransaction = TransactionDeserializer.Deserialize(txDataStr);
