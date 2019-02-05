@@ -84,16 +84,12 @@ namespace Lykke.Service.Icon.Api.Services
             }
         }
 
-        public Task<(IEnumerable<BlacklistedAddress> BlacklistedAddresses, string ContinuationToken)> GetBlacklistedAddressesAsync(
-            int take,
-            string continuationToken)
+        public Task<(IReadOnlyCollection<BlacklistedAddress> BlacklistedAddresses, string ContinuationToken)> GetBlacklistedAddressesAsync(int take, string continuationToken)
         {
             return _blacklistedAddressRepository.GetAllAsync(take, continuationToken);
         }
 
-        public Task<(IEnumerable<WhitelistedAddress> WhitelistedAddresses, string ContinuationToken)> GetWhitelistedAddressesAsync(
-            int take,
-            string continuationToken)
+        public Task<(IReadOnlyCollection<WhitelistedAddress> WhitelistedAddresses, string ContinuationToken)> GetWhitelistedAddressesAsync(int take, string continuationToken)
         {
             return _whitelistedAddressRepository.GetAllAsync(take, continuationToken);
         }
