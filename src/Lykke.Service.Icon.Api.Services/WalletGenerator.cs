@@ -9,13 +9,15 @@ namespace Lykke.Service.Icon.Api.Services
 {
     public class WalletGenerator : IWalletGenerator
     {
-        public Task<(string Address, string PrivateKey)> GenerateWalletAsync()
+        private const string nullAddresContext = null;
+
+        public Task<(string Address, string AddressContext, string PrivateKey)> GenerateWalletAsync()
         {
             var wallet = KeyWallet.Create();
             var address = wallet.GetAddress().ToString();
             var privateKey = wallet.GetPrivateKey().ToHexString(false);
 
-            return Task.FromResult((address, privateKey));
+            return Task.FromResult((address, nullAddresContext, privateKey));
         }
     }
 }
