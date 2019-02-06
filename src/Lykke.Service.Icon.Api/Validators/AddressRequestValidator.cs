@@ -6,12 +6,11 @@ using Lykke.Quintessence.Models;
 namespace Lykke.Service.Icon.Api.Validators
 {
     [UsedImplicitly]
-    public class AddressRequestValidator : AbstractValidator<AddressRequest>
+    public class AddressRequestValidator : Lykke.Quintessence.Validators.AddressRequestValidator
     {
         public AddressRequestValidator(
-            IAddressService addressService)
+            IAddressService addressService) : base(addressService)
         {
-            Quintessence.Validators.Rules.AddressMustBeValid(RuleFor(x => x.Address), addressService);
         }
     }
 }

@@ -6,16 +6,11 @@ using Lykke.Quintessence.Models;
 namespace Lykke.Service.Icon.Api.Validators
 {
     [UsedImplicitly]
-    public class BlacklistAddressRequestValidator : AbstractValidator<BlacklistAddressRequest>
+    public class BlacklistAddressRequestValidator : Lykke.Quintessence.Validators.BlacklistAddressRequestValidator
     {
         public BlacklistAddressRequestValidator(
-            IAddressService addressService)
+            IAddressService addressService) : base(addressService)
         {
-            Quintessence.Validators.Rules.AddressMustBeProperlyFormatted(RuleFor(x => x.Address), addressService);
-
-            RuleFor(x => x.BlacklistingReason)
-                .NotEmpty()
-                .MaximumLength(255);
         }
     }
 }
