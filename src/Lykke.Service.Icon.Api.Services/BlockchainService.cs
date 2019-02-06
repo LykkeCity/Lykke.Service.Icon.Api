@@ -118,7 +118,6 @@ namespace Lykke.Service.Icon.Api.Services
                 .To(new Address(to))
                 .Value(amount)
                 .Timestamp(timestamap)
-                //.Nonce(await _nonceService.GetNextNonceAsync(from))
                 .Build();
             var rpcObject = SignedTransaction.GetTransactionProperties(transaction);
             string serializedTransaction = TransactionSerializer.Serialize(rpcObject);
@@ -132,21 +131,6 @@ namespace Lykke.Service.Icon.Api.Services
             var (minGasPrice, maxGasPrice) = await _gasPriceRange.GetValueAsync();
 
             return minGasPrice + (maxGasPrice - minGasPrice) / 2;
-
-            //var estimatedGasPrice = await _apiClient.GetGasPriceAsync();
-
-            //if (estimatedGasPrice >= maxGasPrice)
-            //{
-            //    return maxGasPrice;
-            //}
-            //else if (estimatedGasPrice <= minGasPrice)
-            //{
-            //    return minGasPrice;
-            //}
-            //else
-            //{
-            //    return estimatedGasPrice;
-            //}
         }
 
         public virtual Task<BigInteger> GetBalanceAsync(
@@ -157,7 +141,6 @@ namespace Lykke.Service.Icon.Api.Services
             return _iconService.GetBalance(iconAddress);
         }
 
-        //?)
         public virtual Task<BigInteger> GetBalanceAsync(
             string address,
             BigInteger blockNumber)

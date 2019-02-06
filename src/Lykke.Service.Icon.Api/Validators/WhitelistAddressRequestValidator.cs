@@ -7,16 +7,11 @@ using Lykke.Quintessence.Validators;
 namespace Lykke.Service.Icon.Api.Validators
 {
     [UsedImplicitly]
-    public class WhitelistAddressRequestValidator : AbstractValidator<WhitelistAddressRequest>
+    public class WhitelistAddressRequestValidator : Lykke.Quintessence.Validators.TransactionHistoryRequestValidator
     {
         public WhitelistAddressRequestValidator(
-            IAddressService addressService)
+            IAddressService addressService) : base(addressService)
         {
-            RuleFor(x => x.Address)
-                .AddressMustBeValid(addressService);
-            
-            RuleFor(x => x.MaxGasAmount)
-                .AmountMustBeValid();
         }
     }
 }

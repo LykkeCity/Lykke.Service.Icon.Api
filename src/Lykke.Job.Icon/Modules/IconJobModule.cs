@@ -52,13 +52,11 @@ namespace Lykke.Job.Icon.Modules
                 .SingleInstance();
 
             builder
-                .UseAITelemetryConsumer()
                 .RegisterType<NonceService>()
                 .As<INonceService>()
                 .SingleInstance();
 
             builder
-                .UseAITelemetryConsumer()
                 .RegisterInstance(new HttpProvider(
                     new HttpClient(),
                     _appSettings.CurrentValue.Job.RpcNode.ApiUrl))
@@ -66,32 +64,26 @@ namespace Lykke.Job.Icon.Modules
                 .SingleInstance();
 
             builder
-                .UseAITelemetryConsumer()
                 .RegisterType<IconService>()
                 .As<IIconService>()
                 .SingleInstance();
 
             builder
-                .UseAITelemetryConsumer()
                 .RegisterType<WalletGenerator>()
                 .As<IWalletGenerator>()
                 .SingleInstance();
 
             builder
-                .UseAITelemetryConsumer()
                 .RegisterType<KeyGenerator>()
                 .As<IKeyGenerator>()
                 .SingleInstance();
 
             builder
-                .UseAITelemetryConsumer()
-                .RegisterType<HashCalculator>()
+                .RegisterInstance(HashCalculator.Sha3256)
                 .As<IHashCalculator>()
-                .WithParameter("hashType", HashType.SHA3_256)
                 .SingleInstance();
 
             builder
-                .UseAITelemetryConsumer()
                 .RegisterType<KeyGenerator>()
                 .As<IKeyGenerator>()
                 .SingleInstance();
@@ -103,13 +95,11 @@ namespace Lykke.Job.Icon.Modules
                 .SingleInstance();
 
             builder
-                .UseAITelemetryConsumer()
                 .RegisterType<GetTransactionReceiptsStrategy>()
                 .As<IGetTransactionReceiptsStrategy>()
                 .SingleInstance();
 
             builder
-                .UseAITelemetryConsumer()
                 .RegisterType<TryGetTransactionErrorStrategy>()
                 .As<ITryGetTransactionErrorStrategy>()
                 .SingleInstance();
