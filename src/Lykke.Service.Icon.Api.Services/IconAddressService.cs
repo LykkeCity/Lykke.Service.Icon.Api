@@ -6,6 +6,7 @@ using Common.Log;
 using JetBrains.Annotations;
 using Lykke.Common.Log;
 using Lykke.Icon.Sdk.Crypto;
+using Lykke.Icon.Sdk.Data;
 using Lykke.Quintessence.Domain;
 using Lykke.Quintessence.Domain.Repositories;
 using Lykke.Quintessence.Domain.Services;
@@ -161,6 +162,12 @@ namespace Lykke.Service.Icon.Api.Services
             bool skipWhiteAndBlacklistCheck)
         {
             if (!IconKeys.IsValidAddress(address))
+            {
+                return AddressValidationResult.AddressIsInvalid(AddressValidationError.FormatIsInvalid);
+            }
+
+            var addressObj = new Address(address);
+            if (addressObj.GetPrefix() == AddressPrefix.FromString(AddressPrefix.Contract))
             {
                 return AddressValidationResult.AddressIsInvalid(AddressValidationError.FormatIsInvalid);
             }
