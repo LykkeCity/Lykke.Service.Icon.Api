@@ -4,7 +4,7 @@
     <Version>1.0.0</Version>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Lykke.Icon.Sdk" Version="0.2.7" />
+    <PackageReference Include="Lykke.Icon.Sdk" Version="0.2.8" />
     <PackageReference Include="Lykke.Quintessence.Api.Domain" Version="1.0.0" />
     <PackageReference Include="Lykke.Quintessence.Api.DomainServices" Version="1.0.0" />
   </ItemGroup>
