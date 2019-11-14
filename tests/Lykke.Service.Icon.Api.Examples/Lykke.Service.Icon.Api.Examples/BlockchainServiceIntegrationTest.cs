@@ -28,7 +28,7 @@ namespace Lykke.Service.Icon.Api.Examples
             Regex regex = new Regex("timestamp\\.[^\\.]+\\.");
             txDataStr = regex.Replace(txDataStr, "timestamp.0x226c8.");
             var expectedItToBe =
-                "icx_sendTransaction.from.hx659c15230d21ffe9f4c841e2a33126596b459226.nid.0x2.stepLimit.0xf4240.timestamp.0x226c8.to.hx99b9ecb0973b224105b57be18a6e92ab98e2601f.value.0xde0b6b3a7640000.version.0x3";
+                "icx_sendTransaction.from.hxe8db3bc33564f5b07cd52e37e2d762d3073a2c1d.nid.0x2.stepLimit.0xf4240.timestamp.0x226c8.to.hxa0c8aad540a8b85175b59d98585e0f79ffbc2502.value.0xde0b6b3a7640000.version.0x3";
 
             Assert.Equal(expectedItToBe, txDataStr);
 
@@ -64,11 +64,11 @@ namespace Lykke.Service.Icon.Api.Examples
         public async Task GetTransactionResultAsync__Transaction_Has_Been_Executed__Transaction_Result_Received()
         {
             var blockchainService = _container.Resolve<IBlockchainService>();
-            string txHash = "0x8e3c97d792762cf805c194541bfee7b09418fa315e99ff8f4cebbd368e330193";
+            string txHash = "0xefe60b8bf5d8de6c26eca068b146d0b018c791865a65a117047e6e64dad7ee95";
 
             var transactionResult = await blockchainService.GetTransactionResultAsync(txHash);
 
-            Assert.True(transactionResult.BlockNumber == 43379);
+            Assert.True(transactionResult.BlockNumber == 3_596_187);
             Assert.True(transactionResult.IsCompleted);
             Assert.True(!transactionResult.IsFailed);
             Assert.True(transactionResult.Error == null);

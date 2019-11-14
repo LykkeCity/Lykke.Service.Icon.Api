@@ -14,7 +14,7 @@ namespace Lykke.Service.Icon.Api.Examples
 {
     public class GetTransactionReceiptsStrategy : BaseTest
     {
-        [Fact]
+        [Fact(Skip = "No examples in dev network")]
         public async Task ExecuteAsync__Get_Internal_Transaction_As_Recipients__Result_Is_Correct()
         {
             var getTransactionReceiptsStrategy = _container.Resolve<IGetTransactionReceiptsStrategy>();
@@ -52,7 +52,7 @@ namespace Lykke.Service.Icon.Api.Examples
             Assert.True(internalTransfer == null);
         }
 
-        [Fact]
+        [Fact(Skip = "No examples in dev network")]
         public async Task ExecuteAsync__Get_Transaction_Common_Transfer__Result_Is_Correct()
         {
             var getTransactionReceiptsStrategy = _container.Resolve<IGetTransactionReceiptsStrategy>();
