@@ -8,6 +8,7 @@ using Lykke.Quintessence.Core.Blockchain;
 using Lykke.Quintessence.Core.Crypto;
 using Lykke.Quintessence.Core.DependencyInjection;
 using Lykke.Quintessence.Core.Telemetry.DependencyInjection;
+using Lykke.Quintessence.DependencyInjection;
 using Lykke.Quintessence.Domain.Services;
 using Lykke.Quintessence.Domain.Services.DependencyInjection;
 using Lykke.Quintessence.Domain.Services.Strategies;
@@ -103,6 +104,17 @@ namespace Lykke.Job.Icon.Modules
                 .RegisterType<TryGetTransactionErrorStrategy>()
                 .As<ITryGetTransactionErrorStrategy>()
                 .SingleInstance();
+
+            builder
+                .UseQueueConsumers
+                (
+                    _appSettings.CurrentValue.Job.BalanceMonitoringMaxDegreeOfParallelism,
+                    _appSettings.CurrentValue.Job.BlockchainIndexationMaxDegreeOfParallelism,
+                    _appSettings.CurrentValue.Job.TransactionMonitoringMaxDegreeOfParallelism
+                )
+                .AddBalanceMonitoringQueueConsumer()
+                .AddBlockchainIndexationQueueConsumer()
+                .AddTransactionMonitoringQueueConsumer();
         }
     }
 }
