@@ -130,7 +130,23 @@ namespace Lykke.Service.Icon.Api.Services
         {
             var (minGasPrice, maxGasPrice) = await _gasPriceRange.GetValueAsync();
 
-            return minGasPrice + (maxGasPrice - minGasPrice) / 2;
+            var call = new Call.Builder()
+                .To(new Address("cx0000000000000000000000000000000000000001"))
+                .Method("getStepPrice")
+                .BuildWith<BigInteger>();
+
+            // ReSharper disable once UnusedVariable
+            var gasStepPrice = await _iconService.CallAsync(call);
+
+            if (gasStepPrice < minGasPrice)
+            {
+                gasStepPrice = minGasPrice;
+            } else if (gasStepPrice > maxGasPrice)
+            {
+                gasStepPrice = maxGasPrice;
+            }
+
+            return gasStepPrice;
         }
 
         public virtual Task<BigInteger> GetBalanceAsync(

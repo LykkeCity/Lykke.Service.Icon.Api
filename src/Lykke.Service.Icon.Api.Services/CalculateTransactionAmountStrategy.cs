@@ -21,13 +21,8 @@ namespace Lykke.Service.Icon.Api.Services
             var result = transferAmount;
             if (includeFee)
             {
-                var call = new Call.Builder()
-                    .To(new Address("cx0000000000000000000000000000000000000001"))
-                    .Method("getStepPrice")
-                    .BuildWith<BigInteger>();
-
                 // ReSharper disable once UnusedVariable
-                var gasStepPrice = await _iconService.CallAsync(call);
+                var gasStepPrice = await blockchainService.EstimateGasPriceAsync();
                 var transactionCost = gasAmount * gasStepPrice;
                 result -= transactionCost;
             }
