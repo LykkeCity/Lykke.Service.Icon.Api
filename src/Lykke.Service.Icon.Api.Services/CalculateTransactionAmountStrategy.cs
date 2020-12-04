@@ -2,24 +2,35 @@
 using Lykke.Quintessence.Domain.Services.Strategies;
 using System.Numerics;
 using System.Threading.Tasks;
+using Lykke.Icon.Sdk;
+using Lykke.Icon.Sdk.Data;
 
 namespace Lykke.Service.Icon.Api.Services
 {
     public class CalculateTransactionAmountStrategy : ICalculateTransactionAmountStrategy
     {
-        private static BigInteger _transactionCost = BigInteger.Parse("1000000000000000");
+        private readonly IIconService _iconService;
 
-        public Task<TransactionAmountCalculationResult> ExecuteAsync(IBlockchainService blockchainService, string @from, BigInteger transferAmount, BigInteger gasAmount,
+        public CalculateTransactionAmountStrategy(IIconService iconService)
+        {
+            _iconService = iconService;
+        }
+        public async Task<TransactionAmountCalculationResult> ExecuteAsync(IBlockchainService blockchainService, string @from, BigInteger transferAmount, BigInteger gasAmount,
             bool includeFee)
         {
-            BigInteger result = transferAmount;
+            var result = transferAmount;
             if (includeFee)
-                result -= _transactionCost;
+            {
+                // ReSharper disable once UnusedVariable
+                var gasStepPrice = await blockchainService.EstimateGasPriceAsync();
+                var transactionCost = gasAmount * gasStepPrice;
+                result -= transactionCost;
+            }
 
             if (result <= 0)
-                return Task.FromResult((TransactionAmountCalculationResult)TransactionAmountCalculationResult.TransactionAmountIsTooSmall());
+                return TransactionAmountCalculationResult.TransactionAmountIsTooSmall();
 
-            return Task.FromResult((TransactionAmountCalculationResult)TransactionAmountCalculationResult.TransactionAmount(result));
+            return TransactionAmountCalculationResult.TransactionAmount(result);
         }
     }
 }
